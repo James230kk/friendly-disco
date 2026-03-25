@@ -1,24 +1,35 @@
 const lettersContainer = document.getElementById('letters');
 const result = document.getElementById('result');
 
-// إنشاء الحروف A-Z تلقائياً
+// إنشاء الحروف A-Z
 for (let i = 65; i <= 90; i++) {
-  const letter = String.fromCharCode(i);
-  const div = document.createElement('div');
-  div.className = 'letter';
-  div.textContent = letter;
+  const big = String.fromCharCode(i);      // A
+  const small = big.toLowerCase();         // a
 
-  // ضغطة واحدة: عرض الحرف
-  div.addEventListener('click', () => {
-    result.textContent = `Letter: ${letter}`;
+  const box = document.createElement('div');
+  box.className = 'letter-box';
+
+  const bigDiv = document.createElement('div');
+  bigDiv.className = 'big';
+  bigDiv.textContent = big;
+
+  const smallDiv = document.createElement('div');
+  smallDiv.className = 'small';
+  smallDiv.textContent = small;
+
+  // الكبير: يظهر الاسم
+  bigDiv.addEventListener('click', () => {
+    result.textContent = `Letter name: ${big}`;
   });
 
-  // ضغطة مزدوجة: نطق الحرف
-  div.addEventListener('dblclick', () => {
-    const utter = new SpeechSynthesisUtterance(letter);
+  // الصغير: ينطق الحرف
+  smallDiv.addEventListener('click', () => {
+    const utter = new SpeechSynthesisUtterance(small);
     utter.lang = 'en-US';
     speechSynthesis.speak(utter);
   });
 
-  lettersContainer.appendChild(div);
+  box.appendChild(bigDiv);
+  box.appendChild(smallDiv);
+  lettersContainer.appendChild(box);
 }
