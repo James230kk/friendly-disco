@@ -13,10 +13,17 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 30px;
-  gap: 10px;
+  gap: 15px;
 }
 
-.letter {
+.letter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.big, .small {
   width: 60px;
   height: 60px;
   border-radius: 8px;
@@ -31,7 +38,7 @@ h1 {
   transition: 0.2s;
 }
 
-.letter:hover {
+.big:hover, .small:hover {
   background: #333;
   color: #fff;
 }
